@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Pictures and images
+*.png
+*.jpg
+
+# Makefiles, Cmake
+makefile
+Makefile
+
+# Program output
+*.txt
+*.dat
