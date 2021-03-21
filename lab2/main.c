@@ -14,7 +14,7 @@ int main(void)
 {
     float **A = matrix(1, SIZE, 1, SIZE);
     float **Ar = matrix(1, SIZE, 1, SIZE);
-     float **B = matrix(1, SIZE, 1, SIZE);
+    float **B = matrix(1, SIZE, 1, SIZE);
     float **Br = matrix(1, SIZE, 1, SIZE);
     for(int i=1; i<=SIZE; i++)
     {
