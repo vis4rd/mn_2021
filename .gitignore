@@ -58,6 +58,9 @@ dkms.conf
 # Makefiles, Cmake
 makefile
 Makefile
+*build/
+*cmake/
+*.cmake
 
 # Program output
 *.txt
