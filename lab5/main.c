@@ -41,7 +41,7 @@ int main(void)
     float *lambda = vecAlloc(n);
     float **D;
 
-    FILE *f = fopen("out.txt", "w");
+    FILE *f = fopen("calc.txt", "w");
 
     for(int i = 0; i < n; i++)
         for(int j = 0; j < n; j++)
@@ -54,7 +54,6 @@ int main(void)
 
     for(int k = 0; k < Kval; k++)
     {
-    	fprintf(f, "lambda%d = ", k);
     	for(int i = 1; i <= itMAX; i++)
     	{
     		x2[k] = matvecMult(W, x[k], n);
@@ -62,28 +61,29 @@ int main(void)
     		free(x[k]);
     		x[k] = vecvalDiv(x2[k], vecNorm(x2[k], n), n);
 
-    		fprintf(f, "%f ", lambda[k]);
+    		fprintf(f, "%d %f\n", i, lambda[k]);
 
     		if(k == 0)
     			printf("lambda%d = %f\n", i, lambda[k]);
     		if(k == 1 && i == 1)
     			printf("lambda1-1 = %f\n", lambda[k]);
     	}//petla iterujaca
-    	fprintf(f, "\n"); //enter po wypisaniu lambdy
+    	fprintf(f, "\n\n"); //enter po wypisaniu lambdy
 
     	//wyznaczanie W
     	W = calcW(x[k], lambda[k], W, n);
     }//petla wektorow
 
-    fprintf(f, "matrix X = \n");
-	fprintM(f, x, n);
+    /*fprintf(f, "\nmatrix X = \n");
+	fprintM(f, x, n);*/
 
 	//wyznaczanie D
    	D = calcD(x, A, n);
 
-	fprintf(f, "matrix D = \n");
-	fprintM(f, D, n);
+	/*fprintf(f, "matrix D = \n");
+	fprintM(f, D, n);*/
 
+   	printf("\n");
 	printf("matrix D = \n");
 	printM(D, n);
 
@@ -271,7 +271,10 @@ void printM(float **a, int n)
 	for(int i = 0; i < n; i++)
 	{
 		for(int j = 0; j < n; j++)
-			printf("%g ", a[i][j]);
+			if(fabs(a[i][j])>0.01f)
+				printf("%11.3f ", a[i][j]);
+			else
+				printf("%11.3e ", a[i][j]);
 		printf("\n");
 	}
 	printf("\n");
