@@ -11,7 +11,7 @@
 
 #define frand() ((double)rand())/(RAND_MAX+1.0)
 #define Crand(Y) (((Y)-0.5)/5.0)
-#define f(x) ( sin(14*M_PI*(x))/(x_max-x_min) * \
+#define f(x) ( sin(14*M_PI*(x)/(x_max-x_min)) * \
             (exp(-pow((x)-x_0, 2)/(2*sigma*sigma)) + \
             exp(-pow((x)+x_0, 2)/(2*sigma*sigma))) )
 
